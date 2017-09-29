@@ -7,13 +7,12 @@
         <div class="col-mid-12">
             <asp:Repeater ID="CategoryRepeater" runat="server" ItemType="NorthwindData.App.DTOs.ProductCategory">
                 <ItemTemplate>
+                    <img src ="data:image/png,<%# Convert.ToBase64String(Item.Picture) %>" />
                     <h4><%# Item.Name %></h4>
                     <blockquote>
                         <asp:Repeater ID="ProductRepeater" runat="server" ItemType="NorthwindData.App.DTOs.ProductInfo" DataSource="<%# Item.Products %>">
                             <ItemTemplate>
-                                <h6>
-                                    <%# Item.Name %>
-                                </h6>
+                                <p><b><%# Item.Name %></b> - <%# $"{Item.Price:C}" %> - <%# Item.InStock %> <%# Item.QuantityPerUnit %> &mdash; In stock </p>
                             </ItemTemplate>
                         </asp:Repeater>
                     </blockquote>
